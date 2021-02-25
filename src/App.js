@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
    
@@ -14,7 +14,7 @@ function App() {
 
         
   
-    
+    <Users></Users>
     <Person name="tuhin"></Person>
     <Person name="tuhin"></Person>
     <Fish></Fish>
@@ -88,6 +88,29 @@ const Fish=()=>{
     </div>
   )
 
+}
+ 
+function Users(){
+  const [users,setusers]=useState(0)
+  useEffect(()=>{
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(res=>res.json())
+    .then(data=>setusers(data))
+  })
+  return(
+    <div>
+      <h2>Dyanamic:{users.length} </h2>
+      <ul>
+        {
+          users.map(user=><li>{user.name}</li>)
+        
+        }
+        {
+            users.map(user=><li>{user.email}</li>)
+        }
+      </ul>
+    </div>
+  )
 }
 
 export default App;
