@@ -1,26 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
-  const Product=[{
-    name:'tuhin',age:22
-  },{
-    name:'tuhin1',age:23
-  },
-  
-]
+   
+ 
   
  
   return (
     <div className="App">
       <header className="App-header">
+
+
         
-    <Products name={Product[0]}></Products>
+  
     
     <Person name="tuhin"></Person>
     <Person name="tuhin"></Person>
-    <Person name="tuhin"></Person>
-    <Person name="tuhin"></Person>
+    <Fish></Fish>
+
         
       </header>
     </div>
@@ -28,31 +26,68 @@ function App() {
 }
 function Person(props){
   const style={color:' blue',
-  backgroundColor:'green',
+  backgroundColor:'White',
   margin:10,
   padding:5,
-  width:'150px'
+  width:'150px',
+  borderRadius:'5px'
 }
+const buttonStyle={
+  padding:'5px 20px',
+  marginBottom:'10px',
+  marginLeft:'5px'
+}
+   const [count,setcount]=useState(0)
+   const handle=()=>{
+     const push=count+1 ;
+     setcount(push)
+    
+
+   }
+   const handled=()=>{
+    const pop=count-1 ;
+    setcount(pop)
+    if(pop<0){
+      setcount(0)
+    }
+  }
+  
   return(
-    <div style={style}><h1>{props.name}</h1>
-    <h3>i wanna be a jannati</h3></div>
+
+    <div style={style}>
+      <h1>{props.name}</h1>
+      <h3>count:{count}</h3>
+      <button style={buttonStyle} onClick={handle}>push</button>
+      <button style={buttonStyle} onClick={handled}>pop</button>
+      </div>
+      
+    
   )
 }
 
-function Products(props){
-  const productStyle={
-    backgroundColor:'blue',
-    color:'green',
-    width:'150px',
-    height:'200px',
-    marginTop:'20px'
-  }
+
+
+const Fish=()=>{
+  const fishName=[
+    {name:'ilish',price:'450'},
+    {name:'rui',price:'250'},
+    {name:'panggas',price:'150'},
+    {name:'puti',price:'50'},
+    {name:'pabda',price:'180'}
+
+  ]
+  const fishStyle={marginTop:'20px'}
   return(
-    <div style={productStyle}>
-      <h2>{props.name.name}</h2>
-      <button>tuhin</button>
+    <div style={fishStyle}>
+      <ul>
+        {
+          fishName.map(name=><li>{name.name}</li>)
+        }
+      </ul>
+
     </div>
   )
+
 }
 
 export default App;
